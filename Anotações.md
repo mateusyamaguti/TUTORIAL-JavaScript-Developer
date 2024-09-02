@@ -137,3 +137,118 @@ main();
 Além disso, funções também pode ser invocadas e atribuidas a alguma variável como um objeto ou valor, exemplo `main2 = main()` <br>
 
 Além disso, quando queremos utilizar funções que serão isoladas ou que usaremos uma única vez, podemos fazer a criação de uma função sem nome, ela será executa instantaneamente. Esse estilo é muito utilizado na web.
+
+
+### Aula 4 - Criando objetos e classes
+Um objetivo (é um estrutura dinâmica de chave e valor) em JS é uma coleção de valores e pode ser acessado como um dicionário dependendo do seu formato, como exemplo:
+```
+// Como criar um objeto literal em JS
+
+const mateus = {
+    nome : 'Mateus',
+    idade : 27
+};
+
+console.log(mateus);
+console.log(mateus.nome);
+console.log(mateus.idade);
+```
+
+Para incrementar um valor no objeto pode ser usado `mateus.altura = 1.82;`, e para deletar `delete mateus.idade;`<br>
+
+#### Criando método
+Uma função dentro de um objeto geralmente chamamos de método <br>
+Para criar um função pode analisar o exemplo a seguir. Além disso, para conseguir utilizar os valores e chaves associados no contexto dessa função, utiliza-se o argumento `this` antes da chave, assim como é feito com `self` em python.
+```
+const mateus = {
+    nome : 'Mateus',
+    idade : 27,
+    descrever : function(){
+        console.log(`Meu nome é ${this.nome} e tenho ${this.idade}`)
+    }
+};
+
+mateus.descrever()
+```
+Para acessar os valores de forma mais dinâmica posso invocar o objeto e passar a chave dentro das chaves, exemplo: `pessoa['nome']`
+
+#### Como criar classes e instâncias
+Em JavaScript, uma classe é uma estrutura que permite criar objetos com propriedades e comportamentos definidos.<br>
+Exemplo, posso criar uma classe que define pessoa, e depois instaciar ela para criar as pessoas, exemplo:
+```
+// Criando uma classe
+class Pessoa{
+    nome;
+    idade;
+    descrever(){
+        console.log(`Meu nome é ${this.nome} e tenho ${this.idade}`)
+    }
+};
+
+// Instanciando uma classe
+const mateus = new Pessoa();
+
+// atribuindo valores a instancia mateus
+mateus.idade = 27;
+mateus.nome = 'Mateus Xavier Yamaguti';
+mateus.descrever()
+```
+#### Como criar um construtor para classe
+Construtor para classe é usado para obrigar a colocar alguns parâmetros necessários para criar uma instância ou um objeto, por exemplo, uma pessoa precisa ter idade e nome, caso contrário não será criada essa pessoa, exemplo:
+```
+class Pessoa{
+    nome;
+    idade;
+
+    constructor(nome, idade){
+        this.nome = nome;
+        this.idade = idade;
+        this.dataDeNascimento = 2024 - this.idade;
+    }
+
+    descrever(){
+        console.log(`Meu nome é ${this.nome} e tenho ${this.idade}`)
+    }
+};
+
+// Instanciando uma classe que possuir construtor
+const mateus = new Pessoa('Mateus Xavier Yamaguti', 27);
+
+// Chamando o método descrever da instância
+mateus.descrever()
+```
+
+#### Funções recebendo objetos
+Agora que temos a classe bem definida, pode criar uma função que reutiliza essa informações. Exemplo, duas pessoas foram criadas por meio da classe Pessoa(), e serão comparadas por meio da função compararPessoas(p1, p2). Exemplo:
+```
+// Criando uma classe
+class Pessoa{
+    nome;
+    idade;
+
+    constructor(nome, idade){
+        this.nome = nome;
+        this.idade = idade;
+        this.dataDeNascimento = 2024 - this.idade;
+    }
+
+    descrever(){
+        console.log(`Meu nome é ${this.nome} e tenho ${this.idade}`)
+    }
+};
+
+function compararPessoas(p1, p2){
+    if(p1.idade > p2.idade){
+        console.log(`${p1.nome} é mais velho que ${p2.nome}`);
+    } else if(p2.idade > p1.idade){
+        console.log(`${p2.nome} é mais velho que ${p1.nome}`);
+    } else{
+        console.log(`${p1.nome} e ${p2.nome} tem a mesma idade.`);
+    }
+}
+
+const mateus = new Pessoa('Mateus', 27);
+const tiago = new Pessoa('Tiago', 27);
+
+compararPessoas(mateus, tiago)
+```
