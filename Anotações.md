@@ -170,7 +170,7 @@ const mateus = {
 
 mateus.descrever()
 ```
-Para acessar os valores de forma mais dinâmica posso invocar o objeto e passar a chave dentro das chaves, exemplo: `pessoa['nome']`
+Para acessar os valores de forma mais dinâmica posso invocar o objeto e passar a chave dentro das colchete, exemplo: `pessoa['nome']`
 
 #### Como criar classes e instâncias
 Em JavaScript, uma classe é uma estrutura que permite criar objetos com propriedades e comportamentos definidos.<br>
@@ -252,3 +252,25 @@ const tiago = new Pessoa('Tiago', 27);
 
 compararPessoas(mateus, tiago)
 ```
+
+### Aula 5 - Arrays e estruturas de repeticação
+#### Array ou lista
+Lista é uma coleção direta de dados, acessado por seus índice, exemplo:
+```
+// Exemplo de lista
+
+const alunos = ['João', 'Maria', 'Alice'];
+
+console.log(alunos[0]);
+```
+Adiocionar aluno à alunos com o método `push` ou substituindo por meio de `alunos[2] = 'Vinícius'`, podemos utilizar o método length da lista para buscar o tamanho dela<br>
+
+#### Estrutura de repetição
+Exemplo de for
+```
+for (let index = 0; index < alunos.length; index++) {
+    const element = alunos[index];
+    console.log(element)    
+}
+```
+
