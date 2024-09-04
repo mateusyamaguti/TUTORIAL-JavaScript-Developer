@@ -273,4 +273,26 @@ for (let index = 0; index < alunos.length; index++) {
     console.log(element)    
 }
 ```
+### Aula 6 - Importação e exportação com JavaScripts
+Para dividir responsabilidade e distribuir o código é necessário saber importar e exportação.<br> 
+Para isso será criado duas funções, uma `print` para imprimir o código e uma `gets` para o usuário interagir dentro do arquivo funcoes-auxiliares<br>
+Para permirtir importação uma função é preciso incluir o trecho de código. Exemplo:
+```
 
+function gets(){
+    return 10;
+}
+
+function print(texto){
+    console.log(texto);
+}
+
+module.exports = {gets, print}
+```
+
+Para importar funções de um outro local do projeto precisa-se identificar o caminho. Exemplo
+```
+const funcoes = require('./funcoes-auxiliares');
+
+console.log(funcoes)
+```
