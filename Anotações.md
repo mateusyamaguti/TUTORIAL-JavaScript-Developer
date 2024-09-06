@@ -296,3 +296,93 @@ const funcoes = require('./funcoes-auxiliares');
 
 console.log(funcoes)
 ```
+### Aula 7 - Pokedex
+Referência: [Pokedex](https://github.com/digitalinnovationone/js-developer-pokedex)<br>
+
+Site para inspirar em criaçãoes web: [Dribbble](https://dribbble.com/shots/5636562-Dribbble-Refreshed-wordmark-concept)
+
+#### Configuração de ambiente
+1º Verificar se o node está instalado corretamente: `node -v`<br>
+2º Verifica se o npm (instalador e pacote) está instalado corretamente: `npm -b`<br>
+3º Intalar globalmente (-g, ou seja, pode ser acessada de qualquer lugar) a biblioteca http-server: `npm install -g http-server`<br>
+
+Executar o servidor http dentro da pasta `http-server ./` (Se não for no PowerShell, tentar no CMD ou configurar o administrador)
+
+#### Protocolo Cliente e Servidor / Intro a HTML / CSS e JS para web
+
+Protocolo cliente e servidor é a forma de comunicação web entre fazer requisições (cliente) e emitir respostar (servidor) <br>
+HTML: Linguagem de marcação usada nos site para dar significado aos textos<br>
+CSS: Linguagem de stilo em cascata, o seu comportamento é subsrito em cascata, colocar sempre junto do head<br>
+JS na Web: Linguagem de programação, sempre colocar no final da página, dois objetos muito importantes para se aprender `windows` -> tudo que corresponde ao browser e `document` -> tudo que corresponde ao arquivo html.
+
+#### Configurações gerais do projeto
+Para manter uma normalização entre navegadores o ideal é integral um normalizador ao seu html, no caso utilizaremos o [cdn normalize css](https://cdnjs.com/libraries/normalize). Após isso, incluir uma tag link no head presente no index.html `<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />`
+
+#### Organização do projeto
+Para organizar o projeto é importante criar uma página assets onde será disponibilizados os recursos CSS e JS utilizados pela página web.<br>
+Como também, faz-se necessário criar os arquivos com suas respectivas responsabilidade.<br>
+Após isso, deve ser importado os arquivos no index.html: css no head, e js no final da página. Exemplo:
+```
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" 
+    integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="assets\css\global.css">
+</head>
+<body>
+    <h1>Teste</h1>
+
+    <script src="assets\js\main.js"></script>
+</body>
+</html>
+
+```
+
+#### Adicionar fonts de letra
+Entrar no google fonts, pesquisar pela font desejada, copiar o link e inlcuir dentro do index.html. Exemplo:
+```
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" 
+    integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Fonte Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+
+
+    <!-- Arquivo CSS -->
+    <link rel="stylesheet" href="assets\css\global.css">
+</head>
+```
+
+#### Estilização da listagem de pokemon
+Iremos aplicar uma tecnica chamada mobile first, ou seja, fazer primeiro o css simples para mobile e depois adaptar o que precisar para páginas grandes
+<br>
+Configuração de lista:
+
+```
+ol.pokemons li{
+    padding: 2rem 1rem;
+    margin: 0.5rem;
+    border-radius: 1rem;
+    background-color: #14A06F;
+    color: #ffff;
+    height: 100px;
+
+}
+```
+link para imagem da apipokemon: https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/35.svg
+
+
