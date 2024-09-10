@@ -385,4 +385,79 @@ ol.pokemons li{
 ```
 link para imagem da apipokemon: https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/35.svg
 
+### Aula 8 - Dominando o protocolo HTTP e Integrando com a PokeAPI
+De forma resumida um site vai tem uma requisição por meio do endereço de um api, que também terá um id<br>
+Além disso, podemo fazer query string, que é uma busca dentro do próprio caminho do site<br>
 
+#### Requisição API
+Para fazer uma requisição em JS podemos utilizar o __Fetch API__, [exemplo](https://developer.mozilla.org/en-US/docs/Web/API/Response/json)<br>
+Como fazer uma requisição simples com fetch, lembrando que precisa passar um função dentro do método then.
+```
+const offset = 0
+const limit = 10
+const url = `https://pokeapi.co/api/v2/pokemon/?${offset}=0&${limit}=10`
+
+fetch(url).then(function (reponse){
+    console.log(reponse)
+})
+```
+Também podemos utilizar o método catch(), caso a requisição dê erro, assim como o método finally para retornar um resultado final após a finalização da requisição. Esse método de construção podemos chamar de callback
+
+```
+fetch(url)
+    .then(function (reponse){
+    console.log(reponse)
+    })
+    .catch(function (error){
+        console.error(error)
+    })
+    .finally(function (){
+        console.log('Requisição concluída!')
+    })
+```
+
+Podemos melhorar ainda mais a verbozidade do nosso callback utilizando arrow function `=>`, que significa um função especial e chamar novos then para criar outras responsabilidade. Utilizar .json para converter o response da API. Obs: Quando usamos um then após o outro, automaticamente a responsta do then anterior está encadeada no próximo.
+
+```
+fetch(url)
+    .then((reponse) => reponse.json())
+    .then((jsonBody) => console.log(jsonBody))
+    .catch( (error) => console.error(error))
+```
+
+É importante separa os arquivos e suas responsabilidades. Para isso podemos criar um arquivo chamado __poke_Api__ para representar um objeto que será responsável por manipular nossa API.<br>
+
+Agora que temos um objeto responsável pelo consumo da API podemos trabalhar diretamente sobre ele, da seguinte forma:
+```
+pokeApi.getPokemons().then((pokemons) => {
+    const listItens = []
+
+    for (let i = 0; i  < pokemons.length; i++) {
+        const pokemon = pokemons[i];
+        listItens.push(pokemonConvertToLi(pokemon))
+    }
+    console.log(listItens)
+})
+```
+
+Podemos refatorar o laço for utilizando o método `map` muito elegante aplicado em arrays<br>
+Com isso podemos substituir o for pelo map
+```
+const pokemonList = document.getElementById('pokemonList')
+
+pokeApi.getPokemons().then((pokemons = []) => {
+
+
+    const newList = pokemons.map((pokemon) => {
+        return pokemonConvertToLi(pokemon)
+    })
+
+    console.log(newList)
+```
+Além disso, como a referência do return é o próprio item, podemos reduzir ainda mais a função para
+```
+pokeApi.getPokemons().then((pokemons = []) => {    
+    pokemonList.innerHTML += pokemons.map(convertPokemonToLi).join('')
+
+})
+```
