@@ -461,3 +461,54 @@ pokeApi.getPokemons().then((pokemons = []) => {
 
 })
 ```
+
+### Aula 9 - Orientação a protótipo
+
+#### Protótipo
+Cada objeto em JavaScript tem um "protótipo", que é outro objeto a partir do qual ele herda propriedades e métodos. <br>
+No exemplo a seguir veremos que pessoa é um objeto que pode ser incluido em outro por meio do argumento `__proto__`, lembrando que se o JS não encontrar no primeiro proto ele vai no segundo e assim por diante.
+
+```
+const pessoa = {
+    genero: 'Masculino'
+}
+
+const renan = {
+    nome: 'Renan',
+    idade: 30,
+    __proto__: pessoa
+}
+
+console.log(renan.genero)
+```
+
+#### Função contrutora
+Em JavaScript, uma função construtora é usada para criar e inicializar objetos de um determinado tipo, proporcionando uma maneira de definir propriedades e métodos compartilhados entre as instâncias. Ao chamar uma função construtora com a palavra-chave new, um novo objeto é criado com o protótipo definido pela propriedade prototype da função construtora, e as propriedades e métodos especificados na função são adicionados ao objeto. Isso permite a criação eficiente de múltiplos objetos com a mesma estrutura e comportamento, promovendo reutilização de código e encapsulamento.<br>
+Obs: Função contrutora começa com a primeira letra maiúscula`. Exemplo:<br>
+```
+
+function Pessoa(nome, idade){
+    this.nome = nome
+    this.idade = idade
+}
+
+const renan = new Pessoa('Renan', 30)
+
+console.log(renan)
+```
+
+Se quisermos acrescentar algo a função construtora, podemos utilizar o método `prototype`. Exemplo:
+```
+function Pessoa(nome, idade){
+    this.nome = nome
+    this.idade = idade
+}
+
+Pessoa.prototype.falar = function(){
+    console.log(`Meu nome é ${this.nome}.`)
+}
+
+const renan = new Pessoa('Renan', 30)
+
+renan.falar()
+```
