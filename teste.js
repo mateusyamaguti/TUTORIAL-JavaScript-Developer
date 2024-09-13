@@ -1,2 +1,9 @@
+const pessoa = { 
+    idade: 18 } 
 
-const total = '10' - 15 + 5; console.log(total);
+const renan = { 
+    nome: 'Renan', 
+    idade: 30, 
+    __proto__: pessoa } 
+    
+console.log(renan.idade)

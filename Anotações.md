@@ -512,3 +512,35 @@ const renan = new Pessoa('Renan', 30)
 
 renan.falar()
 ```
+
+#### Funções
+Podemos passa uma função para uma variável nova.<br>
+Como também podemos passar uma função para outra função<br>
+
+#### Function Declaration
+```
+function nomeDaFuncao(){
+    console.log('nome da função')
+}
+```
+
+#### Function Expression
+
+```
+const nomeDaOutraFuncao = function(){
+    console.log('Nome da outra função')
+}
+```
+
+#### Filter - Método para percorrer uma lista
+Nesse método, tudo que for true é adicionado em uma nova lista, como exemplo:
+```
+const lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+const listaDeNumerosPares = lista.filter((element) => {
+    return (element % 2 === 0)
+})
+
+console.log(listaDeNumerosPares)
+
+```
