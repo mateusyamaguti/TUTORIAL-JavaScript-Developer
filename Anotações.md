@@ -544,3 +544,6 @@ const listaDeNumerosPares = lista.filter((element) => {
 console.log(listaDeNumerosPares)
 
 ```
+
+### Aula 10 - Portifólio
+Essa aula iremos aprender a fazer um portifólio profissional, ou seja, um currículo para subir no gitpage
